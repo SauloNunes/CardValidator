@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B81F99C0-B5FD-4BAF-A87A-5FC76D9DB15B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DLL\ValidaCartaoDLL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="App\ValidaCartaoApp.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ValidaCartaoDLL">
+        <MSBuild Projects="DLL\ValidaCartaoDLL.dproj"/>
+    </Target>
+    <Target Name="ValidaCartaoDLL:Clean">
+        <MSBuild Projects="DLL\ValidaCartaoDLL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ValidaCartaoDLL:Make">
+        <MSBuild Projects="DLL\ValidaCartaoDLL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ValidaCartaoApp">
+        <MSBuild Projects="App\ValidaCartaoApp.dproj"/>
+    </Target>
+    <Target Name="ValidaCartaoApp:Clean">
+        <MSBuild Projects="App\ValidaCartaoApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ValidaCartaoApp:Make">
+        <MSBuild Projects="App\ValidaCartaoApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ValidaCartaoDLL;ValidaCartaoApp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ValidaCartaoDLL:Clean;ValidaCartaoApp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ValidaCartaoDLL:Make;ValidaCartaoApp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
